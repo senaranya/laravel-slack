@@ -22,12 +22,10 @@ class TestCase extends \Orchestra\Testbench\TestCase
                     if (count($aRecursiveDiff)) {
                         $aReturn[$mKey] = $aRecursiveDiff;
                     }
-                }
-                elseif ($mValue !== $array2[$mKey]) {
+                } elseif ($mValue !== $array2[$mKey]) {
                     $aReturn[$mKey] = $mValue;
                 }
-            }
-            else {
+            } else {
                 $aReturn[$mKey] = $mValue;
             }
         }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Aranyasen\LaravelSlack;
 
-
 use Aranyasen\LaravelSlack\Exceptions\SlackNotificationException;
 
 trait MessageComposition
