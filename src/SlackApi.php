@@ -34,6 +34,6 @@ trait SlackApi
     {
         return Http::baseUrl($this->baseUrl)
             ->asJson()
-            ->withToken(config('services.slack.token'));
+            ->withToken(config('laravel-slack.token'));
     }
 }
