@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Aranyasen\LaravelSlack\Tests\Feature;
 
-use Aranyasen\LaravelSlack\Facades\Slack;
+use Aranyasen\LaravelSlack\Exceptions\SlackNotificationException;
 use Aranyasen\LaravelSlack\SlackNotification;
 use Aranyasen\LaravelSlack\Tests\TestCase;
 use Illuminate\Http\Client\Request;
@@ -33,6 +33,15 @@ class SlackNotificationTest extends TestCase
             ->to('channel-1')
             ->send();
         Http::assertSent(static fn(Request $request) => $request['channel'] === 'channel-1');
+    }
+
+    /** @test */
+    public function it_should_throw_exception_when_trying_to_send_without_setting_a_channel_name(): void
+    {
+        $this->expectException(SlackNotificationException::class);
+        (new SlackNotification())
+            ->send();
+        Http::assertNothingSent();
     }
 
     /** @test */

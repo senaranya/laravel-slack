@@ -24,6 +24,9 @@ class SlackNotification
      */
     public function send(): void
     {
+        if (empty($this->channelName)) {
+            throw new SlackNotificationException("Channel name not provided");
+        }
         $data = $this->finalize();
         $this->chatPostMessage($data);
     }
