@@ -134,6 +134,11 @@ trait MessageComposition
         return $this;
     }
 
+    /**
+     * Ref: https://api.slack.com/reference/block-kit/blocks#section
+     *
+     * @throws SlackNotificationException
+     */
     public function section(string $text = ''): self
     {
         if (filled($this->section)) {

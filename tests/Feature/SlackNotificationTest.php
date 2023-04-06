@@ -23,14 +23,14 @@ class SlackNotificationTest extends TestCase
             'slack.com/api/conversations.list' => Http::response([]),
             'slack.com/api/chat.postMessage' => Http::response([]),
         ]);
-        $this->slackNotification = (new SlackNotification())->to('channel-1');
+        $this->slackNotification = (new SlackNotification())->channel('channel-1');
     }
 
     /** @test */
     public function target_channels_can_be_provided(): void
     {
         (new SlackNotification())
-            ->to('channel-1')
+            ->channel('channel-1')
             ->send();
         Http::assertSent(static fn(Request $request) => $request['channel'] === 'channel-1');
     }

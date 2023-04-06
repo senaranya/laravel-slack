@@ -12,7 +12,7 @@ trait SlackApi
 {
     private string $baseUrl = 'https://slack.com/api';
 
-    private function chatPostMessage(array $data): void
+    private function chatPostMessage(array $data): array
     {
         $response = $this
             ->getHttpClient()
@@ -28,6 +28,8 @@ trait SlackApi
         if ($response->json('ok') === false) {
             throw new SlackNotificationException("Failed to send Slack message: '" . $response->json('error') . "'");
         }
+
+        return $response->json();
     }
 
     private function getHttpClient(): PendingRequest

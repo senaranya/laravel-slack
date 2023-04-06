@@ -13,7 +13,7 @@ class SlackNotification
 
     private string $channelName;
 
-    public function to(string $channelName): self
+    public function channel(string $channelName): self
     {
         $this->channelName = $channelName;
         return $this;
@@ -22,19 +22,19 @@ class SlackNotification
     /**
      * @throws SlackNotificationException
      */
-    public function send(): void
+    public function send(): array
     {
         if (empty($this->channelName)) {
             throw new SlackNotificationException("Channel name not provided");
         }
         $data = $this->finalize();
-        $this->chatPostMessage($data);
+        return $this->chatPostMessage($data);
     }
 
     public function dump(bool $asJson = false): self
     {
         $asJson
-            ? dump(json_encode($this->toArray()))
+            ? dump(json_encode($this->toArray(), JSON_PRETTY_PRINT))
             : dump($this->toArray());
 
         return $this;
