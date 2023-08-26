@@ -8,14 +8,14 @@ use Illuminate\Support\ServiceProvider;
 
 class SlackServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->publishes([
             __DIR__ . '/../config/laravel-slack.php' => base_path('config/laravel-slack.php')
         ], 'config');
     }
 
-    public function register()
+    public function register(): void
     {
         $this->app->bind('laravel-slack', fn() => new SlackNotification());
 
