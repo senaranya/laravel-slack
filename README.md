@@ -1,3 +1,10 @@
+<p align="center">
+<a href="https://github.com/senaranya/laravel-slack/actions"><img src="https://github.com/senaranya/laravel-slack/actions/workflows/main_ci.yml/badge.svg?branch=master" alt="CI Status"></a>
+<a href="https://packagist.org/packages/aranyasen/laravel-slack"><img src="https://poser.pugx.org/aranyasen/laravel-slack/downloads" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/aranyasen/laravel-slack"><img src="https://poser.pugx.org/aranyasen/laravel-slack/v/stable" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/aranyasen/laravel-slack"><img src="https://poser.pugx.org/aranyasen/laravel-slack/license" alt="License"></a>
+</p>
+
 # Laravel Slack
 
 This package allows you to easily compose and send Slack messages from Laravel applications
@@ -16,7 +23,7 @@ It creates `config/laravel-slack.php`.
 
 Step-3:
 Add parameters `SLACK_WORKSPACE` and `SLACK_TOKEN` in .env  
-(See [ref](To-create-an-OAuth-token-at-Slack) below on how to generate a Slack API token)
+(See reference below on how to generate a Slack API token)
 
 ### Usage
 ```php
@@ -58,7 +65,7 @@ Add parameters `SLACK_WORKSPACE` and `SLACK_TOKEN` in .env
 `channel()`   -> Channel  
 `header()`    -> Create a header section  
 `context()`   -> A small footer text  
-`divider()`   -> A horizontal line (like <hr>)  
+`divider()`   -> A horizontal line  
 `section()` / `endSection()` --> A section block  
 `lists()`     -> List of items  
 `field()` / `endfield()` --> Inside section  
@@ -81,7 +88,7 @@ Http::assertSent(static fn(Request $request) => $request['channel'] === 'channel
 
 ### References:
 
-#### To create an OAuth token at Slack
+#### To create a Slack API token
 * Visit https://api.slack.com/apps
 * If no app is present, create an app (you may select "from scratch")
 * If the app was created earlier, select the app under *App Name*
