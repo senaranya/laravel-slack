@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Http;
 
 trait SlackApi
 {
-    private string $baseUrl = 'https://slack.com/api';
+    private const BASE_URL = 'https://slack.com/api';
 
     private function chatPostMessage(array $data): array
     {
@@ -34,8 +34,20 @@ trait SlackApi
 
     private function getHttpClient(): PendingRequest
     {
-        return Http::baseUrl($this->baseUrl)
+        return Http::baseUrl(self::BASE_URL)
             ->asJson()
             ->withToken(config('laravel-slack.token'));
+    }
+
+    /**
+     * For testing
+     */
+    public static function fake(): void
+    {
+        config(['services.slack.token' => fake()->uuid()]);
+        Http::fake([
+            self::BASE_URL . "/conversations.list" => Http::response([]),
+            self::BASE_URL . "/chat.postMessage" => Http::response([]),
+        ]);
     }
 }

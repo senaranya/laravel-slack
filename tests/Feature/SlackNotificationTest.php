@@ -17,12 +17,8 @@ class SlackNotificationTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        config(['services.slack.token' => fake()->uuid()]);
         Http::preventStrayRequests();
-        Http::fake([
-            'slack.com/api/conversations.list' => Http::response([]),
-            'slack.com/api/chat.postMessage' => Http::response([]),
-        ]);
+        SlackNotification::fake();
         $this->slackNotification = (new SlackNotification())->channel('channel-1');
     }
 
