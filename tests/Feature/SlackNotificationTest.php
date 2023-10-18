@@ -8,6 +8,7 @@ use Aranyasen\LaravelSlack\Exceptions\SlackNotificationException;
 use Aranyasen\LaravelSlack\SlackNotification;
 use Aranyasen\LaravelSlack\Tests\TestCase;
 use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 
 class SlackNotificationTest extends TestCase
@@ -167,4 +168,35 @@ class SlackNotificationTest extends TestCase
     // }
     // TODO: Create a separate unit test SlackMessageCompositionTest, and use the dump() method to test it. The feature
     //   test should only test anything to do with http, like send()
+
+    /** @test */
+    public function a_file_can_be_sent(): void
+    {
+        $testFile = 'testFileOriginal.txt';
+        file_put_contents($testFile, 'test content');
+        $this->slackNotification
+            ->file($testFile)
+            ->withFileName('testname.txt')
+            ->withInitialComment('test comment')
+            ->withTitle('test title')
+            ->upload();
+
+        Http::assertSent(function (Request $request) {
+            return $request->hasFile('testFileOriginal.txt', 'test content', 'testname.txt')
+                && $this->requestHasFormData($request, 'channel', 'channel-1')
+                && $this->requestHasFormData($request, 'title', 'test title')
+                && $this->requestHasFormData($request, 'initial_comment', 'test comment');
+        });
+        File::delete($testFile);
+    }
+
+    private function requestHasFormData(Request $request, string $name, string $content): bool
+    {
+        foreach ($request->data() as $row) {
+            if ($row['name'] === $name && $row['contents'] === $content) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
