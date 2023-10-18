@@ -60,6 +60,22 @@ Add parameters `SLACK_WORKSPACE` and `SLACK_TOKEN` in .env
     ->channel('some-channel')
     ->text("Hello!")
     ->dump();
+
+// Upload a file
+(new SlackNotification())
+    ->channel('some-channel')
+    ->file($filePath)
+    ->withFileName('Some filename') // This is mandatory for file-uploads
+    ->upload();
+
+// Optionally, a title, or an accompanying message can be added with a file
+(new SlackNotification())
+    ->channel('some-channel')
+    ->file($filePath)
+    ->withFileName('Some filename')
+    ->withInitialComment('some comment')
+    ->withTitle('some title')
+    ->upload();
 ```
 #### APIs:
 `channel()`   -> Channel  
@@ -73,6 +89,10 @@ Add parameters `SLACK_WORKSPACE` and `SLACK_TOKEN` in .env
 `block()`     -> Pre-composed block  
 `send()`      -> Send to Slack  
 `dump()`      -> Dump the final JSON that'd be sent to Slack API
+`file()`      -> Upload a file  
+`withFileName()` -> Upload the file with this filename (mandatory with file() method)
+`withInitialComment()` -> Add a message with a file upload
+`withTitle()` -> Add a title with file upload
 
 ### Testing:
 Invoke `SlackNotification::fake()` to ensure HTTP requests to Slack are mocked. Internally it uses Laravel's [Http::fake()](https://laravel.com/docs/10.x/http-client#testing),
