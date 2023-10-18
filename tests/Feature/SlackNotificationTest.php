@@ -175,8 +175,7 @@ class SlackNotificationTest extends TestCase
         $testFile = 'testFileOriginal.txt';
         file_put_contents($testFile, 'test content');
         $this->slackNotification
-            ->file($testFile)
-            ->withFileName('testname.txt')
+            ->file($testFile, 'testname.txt')
             ->withInitialComment('test comment')
             ->withTitle('test title')
             ->upload();

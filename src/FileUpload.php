@@ -14,16 +14,11 @@ trait FileUpload
     private string $initialComment = '';
     private string $title = '';
 
-    public function file(string $filePath): self
+    public function file(string $filePath, string $filename): self
     {
         $this->path = $filePath;
         $this->contents = file_get_contents($filePath);
-        return $this;
-    }
-
-    public function withFileName(string $fileName): self
-    {
-        $this->filename = $fileName;
+        $this->filename = $filename;
         return $this;
     }
 

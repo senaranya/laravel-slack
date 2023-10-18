@@ -64,15 +64,13 @@ Add parameters `SLACK_WORKSPACE` and `SLACK_TOKEN` in .env
 // Upload a file
 (new SlackNotification())
     ->channel('some-channel')
-    ->file($filePath)
-    ->withFileName('Some filename') // This is mandatory for file-uploads
+    ->file($filePath, 'Some filename')
     ->upload();
 
 // Optionally, a title, or an accompanying message can be added with a file
 (new SlackNotification())
     ->channel('some-channel')
-    ->file($filePath)
-    ->withFileName('Some filename')
+    ->file($filePath, 'Some filename')
     ->withInitialComment('some comment')
     ->withTitle('some title')
     ->upload();
@@ -90,7 +88,6 @@ Add parameters `SLACK_WORKSPACE` and `SLACK_TOKEN` in .env
 `send()`      -> Send to Slack  
 `dump()`      -> Dump the final JSON that'd be sent to Slack API
 `file()`      -> Upload a file  
-`withFileName()` -> Upload the file with this filename (mandatory with file() method)
 `withInitialComment()` -> Add a message with a file upload
 `withTitle()` -> Add a title with file upload
 
