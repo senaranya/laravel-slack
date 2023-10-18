@@ -182,8 +182,8 @@ class SlackNotificationTest extends TestCase
             ->upload();
 
         Http::assertSent(function (Request $request) {
-            return $request->hasFile('testFileOriginal.txt', 'test content', 'testname.txt')
-                && $this->requestHasFormData($request, 'channel', 'channel-1')
+            return $request->hasFile('file', 'test content', 'testname.txt')
+                && $this->requestHasFormData($request, 'channels', 'channel-1')
                 && $this->requestHasFormData($request, 'title', 'test title')
                 && $this->requestHasFormData($request, 'initial_comment', 'test comment');
         });
