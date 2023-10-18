@@ -57,16 +57,4 @@ class SlackNotification
     {
         return $this->finalize();
     }
-
-    /**
-     * @throws SlackNotificationException
-     */
-    public function sendFile(): array
-    {
-        if (empty($this->channelName)) {
-            throw new SlackNotificationException("Channel name not provided");
-        }
-        $data = $this->finalize();
-        return $this->chatPostMessage($data);
-    }
 }
