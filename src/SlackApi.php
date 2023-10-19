@@ -16,6 +16,7 @@ trait SlackApi
     {
         $response = $this
             ->getHttpClient()
+            ->asJson()
             ->post('chat.postMessage', [
                 'channel' => $this->channelName, # https://api.slack.com/methods/chat.postMessage#arg_channel
                 ...$data
@@ -32,10 +33,26 @@ trait SlackApi
         return $response->json();
     }
 
+    private function filesUpload(array $fileData, array $miscData): array
+    {
+        $response = $this
+            ->getHttpClient()
+            ->attach('file', $fileData['contents'], $fileData['filename'])
+            ->post('files.upload', [
+                'channels' => $this->channelName, # https://api.slack.com/methods/files.upload
+                ...$miscData
+            ]);
+
+        if ($response->failed() || ($response->json('ok') === false)) {
+            throw new SlackNotificationException("Failed to upload file: '" . $response->body() . "'");
+        }
+
+        return $response->json();
+    }
+
     private function getHttpClient(): PendingRequest
     {
         return Http::baseUrl(self::BASE_URL)
-            ->asJson()
             ->withToken(config('laravel-slack.token'));
     }
 
@@ -48,6 +65,7 @@ trait SlackApi
         Http::fake([
             self::BASE_URL . "/conversations.list" => Http::response([]),
             self::BASE_URL . "/chat.postMessage" => Http::response([]),
+            self::BASE_URL . "/files.upload" => Http::response([]),
         ]);
     }
 }
