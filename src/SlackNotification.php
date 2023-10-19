@@ -10,6 +10,7 @@ class SlackNotification
 {
     use SlackApi;
     use MessageComposition;
+    use FileUpload;
 
     private string $channelName;
 
@@ -29,6 +30,15 @@ class SlackNotification
         }
         $data = $this->finalize();
         return $this->chatPostMessage($data);
+    }
+
+    public function upload(): array
+    {
+        if (empty($this->channelName)) {
+            throw new SlackNotificationException("Channel name not provided");
+        }
+        [$fileData, $miscData] = $this->finalizeFileData();
+        return $this->filesUpload($fileData, $miscData);
     }
 
     public function dump(bool $asJson = false): self
