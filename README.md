@@ -1,9 +1,9 @@
 <p align="center">
-  <a href="https://github.com/senaranya/laravel-slack/actions/workflows/main_ci.yml"><img src="https://github.com/senaranya/laravel-slack/actions/workflows/main_ci.yml/badge.svg?branch=master" alt="Tests"></a>
-  <a href="https://packagist.org/packages/aranyasen/laravel-slack"><img src="https://img.shields.io/packagist/v/aranyasen/laravel-slack.svg?style=flat-square&label=Current" alt="Current Version"></a>
-  <a href="https://packagist.org/packages/aranyasen/laravel-slack"><img src="https://img.shields.io/packagist/dt/aranyasen/laravel-slack.svg?style=flat-square" alt="Total Downloads"></a>
-  <a href="https://packagist.org/packages/aranyasen/laravel-slack"><img src="https://poser.pugx.org/aranyasen/laravel-slack/license" alt="License"></a>
-  <a href="https://codecov.io/gh/senaranya/laravel-slack"><img src="https://img.shields.io/codecov/c/github/senaranya/laravel-slack/master?style=flat-square" alt="Codecov Coverage"></a>
+  <a href="https://packagist.org/packages/aranyasen/laravel-slack"><img src="https://img.shields.io/packagist/v/aranyasen/laravel-slack.svg?style=flat-square&label=Version&color=blue" alt="Latest Version"></a>
+  <a href="https://packagist.org/packages/aranyasen/laravel-slack"><img src="https://img.shields.io/packagist/dt/aranyasen/laravel-slack.svg?style=flat-square&label=Total%20Downloads&color=orange" alt="Total Downloads"></a>
+  <a href="https://packagist.org/packages/aranyasen/laravel-slack"><img src="https://img.shields.io/packagist/l/aranyasen/laravel-slack.svg?style=flat-square&label=License&color=8A2BE2" alt="License"></a>
+  <a href="https://github.com/senaranya/laravel-slack/actions/workflows/main_ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/senaranya/laravel-slack/main_ci.yml?branch=develop&style=flat-square&label=Tests" alt="Build Status"></a>
+  <a href="https://codecov.io/gh/senaranya/laravel-slack"><img src="https://img.shields.io/codecov/c/github/senaranya/laravel-slack/develop?style=flat-square&label=Coverage" alt="Code Coverage"></a>
 </p>
 
 # Laravel Slack
