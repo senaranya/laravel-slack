@@ -1,8 +1,9 @@
 <p align="center">
-<a href="https://github.com/senaranya/laravel-slack/actions"><img src="https://github.com/senaranya/laravel-slack/actions/workflows/main_ci.yml/badge.svg?branch=master" alt="CI Status"></a>
-<a href="https://packagist.org/packages/aranyasen/laravel-slack"><img src="https://poser.pugx.org/aranyasen/laravel-slack/downloads" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/aranyasen/laravel-slack"><img src="https://poser.pugx.org/aranyasen/laravel-slack/v/stable" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/aranyasen/laravel-slack"><img src="https://poser.pugx.org/aranyasen/laravel-slack/license" alt="License"></a>
+  <a href="https://github.com/senaranya/laravel-slack/actions/workflows/main_ci.yml"><img src="https://github.com/senaranya/laravel-slack/actions/workflows/main_ci.yml/badge.svg?branch=master" alt="Tests"></a>
+  <a href="https://packagist.org/packages/aranyasen/laravel-slack"><img src="https://img.shields.io/packagist/v/aranyasen/laravel-slack.svg?style=flat-square&label=Current" alt="Current Version"></a>
+  <a href="https://packagist.org/packages/aranyasen/laravel-slack"><img src="https://img.shields.io/packagist/dt/aranyasen/laravel-slack.svg?style=flat-square" alt="Total Downloads"></a>
+  <a href="https://packagist.org/packages/aranyasen/laravel-slack"><img src="https://poser.pugx.org/aranyasen/laravel-slack/license" alt="License"></a>
+  <a href="https://codecov.io/gh/senaranya/laravel-slack"><img src="https://img.shields.io/codecov/c/github/senaranya/laravel-slack/master?style=flat-square" alt="Codecov Coverage"></a>
 </p>
 
 # Laravel Slack
