@@ -10,6 +10,7 @@ use Aranyasen\LaravelSlack\Tests\TestCase;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
+use PHPUnit\Framework\Attributes\Test;
 
 class SlackNotificationTest extends TestCase
 {
@@ -23,8 +24,7 @@ class SlackNotificationTest extends TestCase
         $this->slackNotification = (new SlackNotification())->channel('channel-1');
     }
 
-    /** @test */
-    public function target_channels_can_be_provided(): void
+    #[Test] public function target_channels_can_be_provided(): void
     {
         (new SlackNotification())
             ->channel('channel-1')
@@ -32,8 +32,7 @@ class SlackNotificationTest extends TestCase
         Http::assertSent(static fn(Request $request) => $request['channel'] === 'channel-1');
     }
 
-    /** @test */
-    public function it_should_throw_exception_when_trying_to_send_without_setting_a_channel_name(): void
+    #[Test] public function it_should_throw_exception_when_trying_to_send_without_setting_a_channel_name(): void
     {
         $this->expectException(SlackNotificationException::class);
         (new SlackNotification())
@@ -41,8 +40,7 @@ class SlackNotificationTest extends TestCase
         Http::assertNothingSent();
     }
 
-    /** @test */
-    public function a_text_message_can_be_sent(): void
+    #[Test] public function a_text_message_can_be_sent(): void
     {
         $sentence = fake()->sentence();
         $this->slackNotification
@@ -51,8 +49,7 @@ class SlackNotificationTest extends TestCase
         Http::assertSent(static fn(Request $request) => $request['text'] === $sentence);
     }
 
-    /** @test */
-    public function a_header_can_be_added_to_a_message(): void
+    #[Test] public function a_header_can_be_added_to_a_message(): void
     {
         $sentence = fake()->sentence();
         $this->slackNotification
@@ -68,8 +65,7 @@ class SlackNotificationTest extends TestCase
         });
     }
 
-    /** @test */
-    public function a_context_can_be_added_to_a_message(): void
+    #[Test] public function a_context_can_be_added_to_a_message(): void
     {
         $sentence = fake()->sentence();
         $this->slackNotification
@@ -85,8 +81,7 @@ class SlackNotificationTest extends TestCase
         });
     }
 
-    /** @test */
-    public function a_content_divider_can_be_added_in_a_message(): void
+    #[Test] public function a_content_divider_can_be_added_in_a_message(): void
     {
         $this->slackNotification
             ->divider()
@@ -97,8 +92,7 @@ class SlackNotificationTest extends TestCase
         });
     }
 
-    /** @test */
-    public function multiple_blocks_can_be_added_to_a_message(): void
+    #[Test] public function multiple_blocks_can_be_added_to_a_message(): void
     {
         $header = fake()->sentence();
         $context = fake()->sentence();
@@ -116,8 +110,7 @@ class SlackNotificationTest extends TestCase
         });
     }
 
-    /** @test */
-    public function a_section_can_be_added(): void
+    #[Test] public function a_section_can_be_added(): void
     {
         $sentence = fake()->sentence();
         $this->slackNotification
@@ -139,8 +132,7 @@ class SlackNotificationTest extends TestCase
         });
     }
 
-    /** @test */
-    public function it_cleans_up_properly_after_sending_message(): void
+    #[Test] public function it_cleans_up_properly_after_sending_message(): void
     {
         $slackNotification = new SlackNotification();
         self::assertSame(
@@ -153,15 +145,13 @@ class SlackNotificationTest extends TestCase
             'It should have created a fresh message'
         );
     }
-    // /** @test */
-    // public function for_a_given_token_the_channels_are_cached_for_a_day(): void
+    // #[Test] public function for_a_given_token_the_channels_are_cached_for_a_day(): void
     // {
     //     // Not required as we can directly use the channel's name to send the message
     //     // Ref: https://api.slack.com/methods/chat.postMessage#arg_channel
     // }
 
-    // /** @test */
-    // public function channel_cache_can_be_regenerated(): void
+    // #[Test] public function channel_cache_can_be_regenerated(): void
     // {
     //     // Not required as we can directly use the channel's name to send the message
     //     // Ref: https://api.slack.com/methods/chat.postMessage#arg_channel
@@ -169,8 +159,7 @@ class SlackNotificationTest extends TestCase
     // TODO: Create a separate unit test SlackMessageCompositionTest, and use the dump() method to test it. The feature
     //   test should only test anything to do with http, like send()
 
-    /** @test */
-    public function a_file_can_be_sent(): void
+    #[Test] public function a_file_can_be_sent(): void
     {
         $testFile = 'testFileOriginal.txt';
         file_put_contents($testFile, 'test content');
